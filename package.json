@@ -1,6 +1,6 @@
 {
   "name": "@sethealth/router",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "New router based in @stencil/store",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

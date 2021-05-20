@@ -28,8 +28,12 @@ export const createRouter = (opts?: RouterOptions): Router => {
     }
   );
 
-  const push = (href: string) => {
-    history.pushState(null, null as any, href);
+  const push = (href: string, options?: { replace: boolean }) => {
+    if (options?.replace) {
+      history.replaceState(null, null as any, href);
+    } else {
+      history.pushState(null, null as any, href);
+    }
     const url = new URL(href, document.baseURI);
     state.url = url;
     state.activePath = parseURL(url);
@@ -42,7 +46,7 @@ export const createRouter = (opts?: RouterOptions): Router => {
       if (params) {
         if (route.to != null) {
           const to = typeof route.to === 'string' ? route.to : route.to(activePath);
-          push(to);
+          push(to, { replace: true });
           return match(routes);
         } else {
           return { params, route };
