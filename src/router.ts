@@ -39,6 +39,10 @@ export const createRouter = (opts?: RouterOptions): Router => {
     state.activePath = parseURL(url);
   };
 
+  const replace = (href: string) => {
+    push(href, { replace: true })
+  }
+
   const match = (routes: RouteEntry[]) => {
     const { activePath } = state;
     for (let route of routes) {
@@ -88,6 +92,7 @@ export const createRouter = (opts?: RouterOptions): Router => {
       return state.activePath;
     },
     push,
+    replace,
     onChange: onChange as any,
     dispose: disposeRouter,
   });

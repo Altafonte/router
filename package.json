@@ -1,7 +1,7 @@
 {
-  "name": "@sethealth/router",
-  "version": "0.7.2",
-  "description": "New router based in @stencil/store",
+  "name": "@altafonte/router",
+  "version": "0.8.0",
+  "description": "This is a fork of @sethealth/router, which forks stencil-router-v2",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -23,7 +23,7 @@
   "files": [
     "dist"
   ],
-  "author": "Manu Mtz.-Almeida",
+  "author": "Altafonte",
   "license": "MIT",
   "peerDependencies": {
     "@stencil/core": ">=1.10.0"
@@ -43,6 +43,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/sethealth/router.git"
+    "url": "git://github.com/altafonte/router.git"
   }
 }

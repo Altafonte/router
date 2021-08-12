@@ -19,7 +19,8 @@ export interface Router {
   dispose(): void;
   onChange(key: 'url', cb: OnChangeHandler<'url'>);
   onChange(key: 'activePath', cb: OnChangeHandler<'activePath'>);
-  push(href: string): void;
+  push(href: string, options?: { replace: boolean }): void;
+  replace(href: string): void;
 }
 
 export interface RouterProps {
