@@ -20,6 +20,7 @@ export interface Router {
   onChange(key: 'url', cb: OnChangeHandler<'url'>);
   onChange(key: 'activePath', cb: OnChangeHandler<'activePath'>);
   push(href: string, options?: { replace: boolean }): void;
+  replace(href: string): void;
 }
 
 export interface RouterProps {

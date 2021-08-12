@@ -11,6 +11,7 @@ This package is a fork of [@sethealth/router](https://www.npmjs.com/package/@set
 ## Features added to original @sethealth/router
 
 - The `push` function accepts a second param as options, where you can tell to `replace`, so it uses `history.replaceState` instead `history.pushState`. This is intended to be used on automatic redirections, so you don't break the back/forward feature on navigators.
+- `Router.replace(url)` is a shortcut for `Router.push(url, { replace: true })`
 
 ## How does it work?
 
