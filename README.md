@@ -1,6 +1,6 @@
-# stencil-router-v2
+# @altafonte/router
 
-Stencil Router V2 is an experimental new router for stencil that focus in:
+This package is a fork of [@sethealth/router](https://www.npmjs.com/package/@sethealth/router) which is a fork of [Stencil Router V2](https://www.npmjs.com/package/stencil-router-v2), an experimental new router for stencil that focus in:
 
 - **Lightweight** (600bytes)
 - **Treeshakable** (not used features are not included in the final build)
@@ -8,23 +8,26 @@ Stencil Router V2 is an experimental new router for stencil that focus in:
 - **No DOM**: Router is not render any extra DOM element, to keep styling simple.
 - **Fast**: As fast and lightweight as writing your own router with if statements.
 
+## Features added to original @sethealth/router
+
+- The `push` function accepts a second param as options, where you can tell to `replace`, so it uses `history.replaceState` instead `history.pushState`. This is intended to be used on automatic redirections, so you don't break the back/forward feature on navigators.
+
 ## How does it work?
 
 This router backs up the `document.location` in a `@stencil/store`, this way we can respond to changes in document.location is a much simpler, way, not more subscribes, no more event listeners events to connect and disconnect.
 
 Functional Components are the used to collect the list of routes, finally the `Switch` renders only the selected route.
 
-
 ## Install
 
 ```bash
-npm install stencil-router-v2 --save-dev
+npm install @altafonte/router
 ```
 
 ## Examples
 
 ```tsx
-import { createRouter, Route } from 'stencil-router-v2';
+import { createRouter, Route } from '@altafonte/router';
 
 const Router = createRouter();
 
@@ -55,6 +58,7 @@ export class AppRoot {
 ```
 
 ### Redirects
+
 ```tsx
 <Host>
   <Router.Switch>
@@ -66,15 +70,29 @@ export class AppRoot {
 </Host>
 ```
 
+```tsx
+<Host>
+  <Router.Switch>
+
+    <Route path={match("/colors/:type")} render={({ type }) => {
+      if (!["black", "white"].includes(type)) {
+        return Router.push("/colors/black", { replace: true })
+      }
+      return <valid-color-component color={type}/>
+    }}/>
+
+  </Router.Switch>
+</Host>
+```
+
 ### Params
 
 Route can take an optional `render` property that will pass down the params. This method should be used instead of JSX children.
 
 Regex or functional matches have the chance to generate an object of params when the URL matches.
 
-
 ```tsx
-import { createRouter, Route, match } from 'stencil-router-v2';
+import { createRouter, Route, match } from '@altafonte/router';
 
 const Router = createRouter();
 
@@ -114,7 +132,7 @@ const Router = createRouter();
 The `href()` function will inject all the handles to an native `anchor`, without extra DOM.
 
 ```tsx
-import { createRouter, Route, href } from 'stencil-router-v2';
+import { createRouter, Route, href } from '@altafonte/router';
 
 const Router = createRouter();
 
@@ -132,7 +150,6 @@ const Router = createRouter();
   </Router.Switch>
 </Host>
 ```
-
 
 ### Dynamic routes (guards)
 
@@ -170,7 +187,7 @@ export class AppRoot {
 Because the router uses `@stencil/store` its trivial to subscribe to changes in the locations, activeRoute, or even the list of routes.
 
 ```tsx
-import { createRouter, Route } from 'stencil-router-v2';
+import { createRouter, Route } from '@altafonte/router';
 
 const Router = createRouter();
 
@@ -222,4 +239,3 @@ The routes state includes:
   urlParams: { [key: string]: string };
   routes: RouteEntry[];
 ```
-
